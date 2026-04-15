@@ -1,0 +1,549 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand accent — change the hue value to retheme the entire app */
+  /* Presets: blue 250, green 155, red 25, violet 295, orange 55 */
+  --color-brand: oklch(55% 0.2 250);
+  --color-brand-hover: oklch(62% 0.22 250);
+  --color-brand-muted: oklch(55% 0.1 250);
+  --color-brand-foreground: oklch(98% 0 0);
+
+  /* Light theme - neutral grays with better contrast */
+  --color-background: oklch(97% 0 0);
+  --color-foreground: oklch(15% 0 0);
+  --color-card: oklch(100% 0 0);
+  --color-card-foreground: oklch(15% 0 0);
+  --color-popover: oklch(100% 0 0);
+  --color-popover-foreground: oklch(15% 0 0);
+  --color-primary: oklch(25% 0 0);
+  --color-primary-foreground: oklch(98% 0 0);
+  --color-secondary: oklch(93% 0 0);
+  --color-secondary-foreground: oklch(20% 0 0);
+  --color-muted: oklch(93% 0 0);
+  --color-muted-foreground: oklch(45% 0 0);
+  --color-accent: oklch(93% 0 0);
+  --color-accent-foreground: oklch(20% 0 0);
+  --color-destructive: oklch(57.7% 0.245 27.325);
+  --color-destructive-foreground: oklch(98.5% 0 0);
+  --color-border: oklch(88% 0 0);
+  --color-input: oklch(88% 0 0);
+  --color-ring: oklch(25% 0 0);
+  --radius: 0.5rem;
+}
+
+/* Dark theme - triggered by system preference or .dark class */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    /* Dark theme — softer zinc-inspired tones */
+    --color-background: oklch(14.5% 0.005 285);
+    --color-foreground: oklch(95% 0 0);
+    --color-card: oklch(19.5% 0.005 285);
+    --color-card-foreground: oklch(95% 0 0);
+    --color-popover: oklch(19.5% 0.005 285);
+    --color-popover-foreground: oklch(95% 0 0);
+    --color-primary: oklch(95% 0 0);
+    --color-primary-foreground: oklch(14.5% 0.005 285);
+    --color-secondary: oklch(24% 0.005 285);
+    --color-secondary-foreground: oklch(95% 0 0);
+    --color-muted: oklch(24% 0.005 285);
+    --color-muted-foreground: oklch(63% 0 0);
+    --color-accent: oklch(27% 0.005 285);
+    --color-accent-foreground: oklch(95% 0 0);
+    --color-destructive: oklch(57.7% 0.245 27.325);
+    --color-destructive-foreground: oklch(98.5% 0 0);
+    --color-border: oklch(30% 0.005 285);
+    --color-input: oklch(30% 0.005 285);
+    --color-ring: oklch(80% 0 0);
+  }
+}
+
+/* Manual dark mode via .dark class */
+:root.dark {
+  /* Dark theme — softer zinc-inspired tones */
+  --color-background: oklch(14.5% 0.005 285);
+  --color-foreground: oklch(95% 0 0);
+  --color-card: oklch(19.5% 0.005 285);
+  --color-card-foreground: oklch(95% 0 0);
+  --color-popover: oklch(19.5% 0.005 285);
+  --color-popover-foreground: oklch(95% 0 0);
+  --color-primary: oklch(95% 0 0);
+  --color-primary-foreground: oklch(14.5% 0.005 285);
+  --color-secondary: oklch(24% 0.005 285);
+  --color-secondary-foreground: oklch(95% 0 0);
+  --color-muted: oklch(24% 0.005 285);
+  --color-muted-foreground: oklch(63% 0 0);
+  --color-accent: oklch(27% 0.005 285);
+  --color-accent-foreground: oklch(95% 0 0);
+  --color-destructive: oklch(57.7% 0.245 27.325);
+  --color-destructive-foreground: oklch(98.5% 0 0);
+  --color-border: oklch(30% 0.005 285);
+  --color-input: oklch(30% 0.005 285);
+  --color-ring: oklch(80% 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(50% 0 0 / 0.3) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: oklch(50% 0 0 / 0.3);
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: oklch(50% 0 0 / 0.5);
+  }
+}
+
+/* Code syntax highlighting for markdown */
+@layer base {
+  /* Light theme code highlighting */
+  pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0;
+    background: transparent;
+  }
+
+  code.hljs {
+    padding: 3px 5px;
+  }
+
+  .hljs {
+    color: #24292e;
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    color: #6a737d;
+    font-style: italic;
+  }
+
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-literal {
+    color: #d73a49;
+  }
+
+  .hljs-name,
+  .hljs-tag {
+    color: #22863a;
+  }
+
+  .hljs-attr,
+  .hljs-attribute {
+    color: #6f42c1;
+  }
+
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-regexp,
+  .hljs-link {
+    color: #005cc5;
+  }
+
+  .hljs-string,
+  .hljs-symbol,
+  .hljs-bullet {
+    color: #032f62;
+  }
+
+  .hljs-number {
+    color: #005cc5;
+  }
+
+  .hljs-meta,
+  .hljs-built_in,
+  .hljs-builtin-name,
+  .hljs-type,
+  .hljs-params {
+    color: #e36209;
+  }
+
+  .hljs-function .hljs-title {
+    color: #6f42c1;
+  }
+
+  .hljs-addition {
+    color: #22863a;
+    background-color: #f0fff4;
+  }
+
+  .hljs-deletion {
+    color: #b31d28;
+    background-color: #ffeef0;
+  }
+
+  /* Dark theme code highlighting */
+  .dark .hljs,
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light) .hljs {
+      color: #e1e4e8;
+    }
+
+    :root:not(.light) .hljs-comment,
+    :root:not(.light) .hljs-quote {
+      color: #6a737d;
+    }
+
+    :root:not(.light) .hljs-keyword,
+    :root:not(.light) .hljs-selector-tag,
+    :root:not(.light) .hljs-literal {
+      color: #ff7b72;
+    }
+
+    :root:not(.light) .hljs-name,
+    :root:not(.light) .hljs-tag {
+      color: #7ee787;
+    }
+
+    :root:not(.light) .hljs-attr,
+    :root:not(.light) .hljs-attribute {
+      color: #d2a8ff;
+    }
+
+    :root:not(.light) .hljs-variable,
+    :root:not(.light) .hljs-template-variable,
+    :root:not(.light) .hljs-regexp,
+    :root:not(.light) .hljs-link {
+      color: #79c0ff;
+    }
+
+    :root:not(.light) .hljs-string,
+    :root:not(.light) .hljs-symbol,
+    :root:not(.light) .hljs-bullet {
+      color: #a5d6ff;
+    }
+
+    :root:not(.light) .hljs-number {
+      color: #79c0ff;
+    }
+
+    :root:not(.light) .hljs-meta,
+    :root:not(.light) .hljs-built_in,
+    :root:not(.light) .hljs-builtin-name,
+    :root:not(.light) .hljs-type,
+    :root:not(.light) .hljs-params {
+      color: #ffa657;
+    }
+
+    :root:not(.light) .hljs-function .hljs-title {
+      color: #d2a8ff;
+    }
+
+    :root:not(.light) .hljs-addition {
+      color: #aff5b4;
+      background-color: #033a16;
+    }
+
+    :root:not(.light) .hljs-deletion {
+      color: #ffdcd7;
+      background-color: #67060c;
+    }
+  }
+
+  .dark .hljs {
+    color: #e1e4e8;
+  }
+
+  .dark .hljs-comment,
+  .dark .hljs-quote {
+    color: #6a737d;
+  }
+
+  .dark .hljs-keyword,
+  .dark .hljs-selector-tag,
+  .dark .hljs-literal {
+    color: #ff7b72;
+  }
+
+  .dark .hljs-name,
+  .dark .hljs-tag {
+    color: #7ee787;
+  }
+
+  .dark .hljs-attr,
+  .dark .hljs-attribute {
+    color: #d2a8ff;
+  }
+
+  .dark .hljs-variable,
+  .dark .hljs-template-variable,
+  .dark .hljs-regexp,
+  .dark .hljs-link {
+    color: #79c0ff;
+  }
+
+  .dark .hljs-string,
+  .dark .hljs-symbol,
+  .dark .hljs-bullet {
+    color: #a5d6ff;
+  }
+
+  .dark .hljs-number {
+    color: #79c0ff;
+  }
+
+  .dark .hljs-meta,
+  .dark .hljs-built_in,
+  .dark .hljs-builtin-name,
+  .dark .hljs-type,
+  .dark .hljs-params {
+    color: #ffa657;
+  }
+
+  .dark .hljs-function .hljs-title {
+    color: #d2a8ff;
+  }
+
+  .dark .hljs-addition {
+    color: #aff5b4;
+    background-color: #033a16;
+  }
+
+  .dark .hljs-deletion {
+    color: #ffdcd7;
+    background-color: #67060c;
+  }
+}
+
+/* ---- Landing page utilities ---- */
+
+.grid-bg {
+  background-size: 64px 64px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, black 0%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, black 0%, transparent 100%);
+}
+
+:root:not(.dark) .grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not(.dark) .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  }
+}
+
+.glass-card {
+  background: oklch(18% 0 0 / 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid oklch(100% 0 0 / 0.06);
+  border-radius: var(--radius);
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s,
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: oklch(100% 0 0 / 0.12);
+  transform: translateY(-4px);
+}
+
+:root:not(.dark) .glass-card {
+  background: oklch(100% 0 0 / 0.8);
+  border-color: oklch(0% 0 0 / 0.08);
+  box-shadow: 0 1px 3px oklch(0% 0 0 / 0.05);
+}
+
+:root:not(.dark) .glass-card:hover {
+  background: oklch(100% 0 0 / 0.95);
+  border-color: var(--color-brand);
+  box-shadow: 0 4px 12px oklch(0% 0 0 / 0.08);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not(.dark) .glass-card {
+    background: oklch(100% 0 0 / 0.8);
+    border-color: oklch(0% 0 0 / 0.08);
+    box-shadow: 0 1px 3px oklch(0% 0 0 / 0.05);
+  }
+  :root:not(.dark) .glass-card:hover {
+    background: oklch(100% 0 0 / 0.95);
+    border-color: var(--color-brand);
+    box-shadow: 0 4px 12px oklch(0% 0 0 / 0.08);
+  }
+}
+
+/* Page transition animation */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: page-enter 0.25s ease-out;
+}
+
+@keyframes arrow-float {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
+}
+
+.scroll-arrow {
+  animation: arrow-float 2s ease-in-out infinite;
+}
+
+.scroll-arrow:hover {
+  animation-play-state: paused;
+}
+
+/* Floating navbar with animated beam border */
+.navbar-beam {
+  background: oklch(12% 0.005 285 / 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+:root:not(.dark) .navbar-beam {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not(.dark) .navbar-beam {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+}
+
+.navbar-beam::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0%,
+    transparent 60%,
+    var(--color-brand) 72%,
+    var(--color-brand-hover) 80%,
+    var(--color-brand) 88%,
+    transparent 95%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: beam-rotate 4s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes beam-rotate {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+@supports not (background: conic-gradient(from 0deg, red, blue)) {
+  .navbar-beam {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .navbar-beam::before {
+    display: none;
+  }
+}
+
+::selection {
+  background-color: var(--color-brand-muted);
+  color: white;
+}
+
+/* Marquee animation for tech stack */
+.marquee-container {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  will-change: transform;
+}
+
+.marquee-left {
+  animation: marquee-scroll-left 60s linear infinite;
+}
+
+.marquee-right {
+  animation: marquee-scroll-right 30s linear infinite;
+}
+
+@keyframes marquee-scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

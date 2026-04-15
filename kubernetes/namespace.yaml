@@ -1,0 +1,9 @@
+
+# Kubernetes Namespace for rachid
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: rachid
+  labels:
+    app.kubernetes.io/name: rachid
+    app.kubernetes.io/managed-by: kubectl

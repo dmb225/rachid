@@ -120,7 +120,7 @@ docker-up:
 	@echo "   API: http://localhost:8000"
 	@echo "   Docs: http://localhost:8000/docs"
 	@echo "   Flower: http://localhost:5555"
-	@echo "   PostgreSQL: localhost:5432"
+	@echo "   PostgreSQL: localhost:5433"
 	@echo "   Redis: localhost:6379"
 
 docker-down:
@@ -179,8 +179,8 @@ docker-prod-build:
 docker-db:
 	docker-compose up -d db
 	@echo ""
-	@echo "✅ PostgreSQL started on port 5432"
-	@echo "   Connection: postgresql://postgres:postgres@localhost:5432/rachid"
+	@echo "✅ PostgreSQL started on port 5433"
+	@echo "   Connection: postgresql://postgres:postgres@localhost:5433/rachid"
 
 docker-db-stop:
 	docker-compose stop db

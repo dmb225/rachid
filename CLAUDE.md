@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**Rachid** - Your wise conpanion
+**Rachid** - Your wise companion
 
 **Stack:** FastAPI + Pydantic v2, PostgreSQL (async via asyncpg)
 , JWT + API Key auth, Redis, PydanticAI, RAG (pgvector), Celery, Next.js 15 (i18n)

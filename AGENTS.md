@@ -4,7 +4,7 @@ This file provides guidance for AI coding agents (Codex, Copilot, Cursor, Zed, O
 
 ## Project Overview
 
-**Rachid** - Your wise conpanion
+**Rachid** - Your wise companion
 
 **Stack:** FastAPI + Pydantic v2, PostgreSQL
 , JWT + API Key auth, Redis

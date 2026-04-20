@@ -1,6 +1,6 @@
 # Rachid
 
-Your wise conpanion
+Your wise companion
 
 ## Stack
 
